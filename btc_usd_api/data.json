@@ -1,0 +1,18 @@
+[{
+    "model":"api.realtimerate",    
+    "pk":1, 
+    "fields":{
+        "from_currency_code": "BTC",
+        "from_currency_name": "Bitcoin",
+        "to_currency_code": "USD",
+        "to_currency_name": "United States Dollar",
+        "exchange_rate": "62418.00000000",
+        "last_refreshed": "2021-11-03 13:30:01",
+        "time_zone": "UTC",
+        "bid_price": "62417.99000000",
+        "ask_price": "62418.00000000"
+    }
+}]
+
+
+

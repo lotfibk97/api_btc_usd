@@ -1,0 +1,59 @@
+version: "3.3"
+   
+services:
+    django:
+        build: .
+        container_name: django
+        command: bash -c "python manage.py migrate && python manage.py loaddata data.json && python manage.py runserver 0.0.0.0:8000"
+        ports:
+            - "8000:8000"
+
+
+        environment:
+            - DEBUG=1
+            - CELERY_BROKER=redis://redis:6379/0
+            - CELERY_BACKEND=redis://redis:6379/0
+        depends_on:
+            - pgdb
+            - redis
+
+    celery-worker:
+        build: .
+        container_name: celery-worker
+        command: celery -A btc_usd_api worker --loglevel=info
+        links:
+            - redis
+        depends_on:
+            - redis
+        
+
+    celery-beat:
+        build: .
+        container_name: celery-beat
+        command: celery -A btc_usd_api beat -l INFO --scheduler
+        links:
+            - celery-worker
+            - redis
+        depends_on:
+            - celery-worker
+            - redis
+        
+    pgdb:
+        image: postgres
+        container_name: pgdb
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            
+        
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/    
+    redis:
+        image: "redis:alpine"
+    
+
+        
+
+volumes:
+  postgres_data:
