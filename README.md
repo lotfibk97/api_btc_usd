@@ -15,6 +15,7 @@ This is an api that gives the btc usd rate.
   Launch the containers:
   
   ```docker-compose buid``` 
+  
   ```docker-compose up``` 
 
 ## Usage
