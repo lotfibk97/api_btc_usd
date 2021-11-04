@@ -22,6 +22,10 @@ This is an api that gives the btc usd rate.
 
 Ps: You need to set up a secret key in settings.py and you need to replace API_KEY by the api key you generated from the alphavantage API
 
+``` SECRET_KEY = "your secret key" ```
+
+``` API_KEY = "your api key" ```
+
 ## Usage
 
   Go to your django url: (0.0.0.0:8000)
