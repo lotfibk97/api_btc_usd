@@ -20,6 +20,8 @@ This is an api that gives the btc usd rate.
   
   ```docker-compose up``` 
 
+Ps: You need to set up a secret key in settings.py and you need to replace API_KEY by the api key you generated from the alphavantage API
+
 ## Usage
 
   Go to your django url: (0.0.0.0:8000)
